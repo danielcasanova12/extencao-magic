@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "StatusInvest Plus (pessoal)",
+  "version": "0.1.0",
+  "description": "Mostra dados do meu banco na página de patrimônio do StatusInvest.",
+  "icons": { "128": "assets/icon128.png" },
+
+  "host_permissions": [
+    "https://statusinvest.com.br/*",
+    "https://www.statusinvest.com.br/*",
+    "http://localhost:3000/*",
+    "https://<SEU-PROJETO>.vercel.app/*"
+  ],
+
+  "permissions": ["storage", "scripting", "activeTab"],
+
+  "background": {
+    "service_worker": "bg.js",
+    "type": "module"
+  },
+
+  "content_scripts": [{
+    "matches": ["https://statusinvest.com.br/carteira/patrimonio*","https://www.statusinvest.com.br/carteira/patrimonio*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+
+  "action": { "default_title": "StatusInvest Plus" }
+}
